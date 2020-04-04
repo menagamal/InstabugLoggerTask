@@ -11,7 +11,7 @@ import Foundation
 
 extension Logger{
     // MARK: HelperFunctions
-    func validateMessage(message:String) -> String {
+    internal func validateMessage(message:String) -> String {
         var newMessage = ""
         if message.count > 1000 {
             newMessage = message.prefix(1000) + "..."
@@ -21,7 +21,7 @@ extension Logger{
         return newMessage
     }
     
-    func formatDate(date:Date! = nil) -> String {
+    internal func formatDate(date:Date! = nil) -> String {
         if date == nil {
             let currentDate = Date()
             let dateFormatter = DateFormatter()
@@ -37,7 +37,7 @@ extension Logger{
         
     }
     
-    func getDateFromString(str:String) -> Date {
+    internal  func getDateFromString(str:String) -> Date {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd,yyyy"
@@ -48,12 +48,12 @@ extension Logger{
     }
     
     
-    func encodeLog(date:String,level:String,message:String) ->  String {
+    internal func encodeLog(date:String,level:String,message:String) ->  String {
         return "[\(date)-\(level)-\(message)]"
     }
     
     
-    func decodeLog(log:String) -> LogModel {
+    internal  func decodeLog(log:String) -> LogModel {
         var currentLog = log
         currentLog.removeLast()
         currentLog.removeFirst()
@@ -65,9 +65,9 @@ extension Logger{
         return logModel
     }
     
-    func sortLogs(logs:[LogModel]) -> [LogModel]  {
+    internal  func sortLogs(logs:[LogModel]) -> [LogModel]  {
         return   logs.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
     }
-   
+    
     
 }
